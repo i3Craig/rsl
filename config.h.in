@@ -13,41 +13,41 @@
    want LASSEN. */
 #undef HAVE_LASSEN
 
-/* Define to 1 if you have the `df' library (-ldf). */
+/* Define to 1 if you have the 'df' library (-ldf). */
 #undef HAVE_LIBDF
 
 /* For EDGE capability. Change this to '#define HAVE_LIBETOR 1', if you have
    libetor -- the EDGE decoding library. */
 #undef HAVE_LIBETOR
 
-/* Define to 1 if you have the `implode' library (-limplode). */
+/* Define to 1 if you have the 'implode' library (-limplode). */
 #undef HAVE_LIBIMPLODE
 
-/* Define to 1 if you have the `jpeg' library (-ljpeg). */
+/* Define to 1 if you have the 'jpeg' library (-ljpeg). */
 #undef HAVE_LIBJPEG
 
-/* Define to 1 if you have the `mfhdf' library (-lmfhdf). */
+/* Define to 1 if you have the 'mfhdf' library (-lmfhdf). */
 #undef HAVE_LIBMFHDF
 
-/* Define to 1 if you have the `tsdistk' library (-ltsdistk). */
+/* Define to 1 if you have the 'tsdistk' library (-ltsdistk). */
 #undef HAVE_LIBTSDISTK
 
 /* Define to 1 if you have the <malloc.h> header file. */
 #undef HAVE_MALLOC_H
 
-/* Define to 1 if you have the <memory.h> header file. */
-#undef HAVE_MEMORY_H
-
-/* Define to 1 if you have the `mktime' function. */
+/* Define to 1 if you have the 'mktime' function. */
 #undef HAVE_MKTIME
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
 
+/* Define to 1 if you have the <stdio.h> header file. */
+#undef HAVE_STDIO_H
+
 /* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
 
-/* Define to 1 if you have the `strdup' function. */
+/* Define to 1 if you have the 'strdup' function. */
 #undef HAVE_STRDUP
 
 /* Define to 1 if you have the <strings.h> header file. */
@@ -56,7 +56,7 @@
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
 
-/* Define to 1 if you have the `strstr' function. */
+/* Define to 1 if you have the 'strstr' function. */
 #undef HAVE_STRSTR
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
@@ -95,21 +95,23 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
-/* Define to 1 if you have the ANSI C header files. */
+/* Define to 1 if all of the C89 standard headers exist (not just the ones
+   required in a freestanding environment). This macro is provided for
+   backward compatibility; new code need not use it. */
 #undef STDC_HEADERS
 
-/* Define to 1 if your <sys/time.h> declares `struct tm'. */
+/* Define to 1 if your <sys/time.h> declares 'struct tm'. */
 #undef TM_IN_SYS_TIME
 
 /* Version number of package */
 #undef VERSION
 
-/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
-   `char[]'. */
+/* Define to 1 if 'lex' declares 'yytext' as a 'char *' by default, not a
+   'char[]'. */
 #undef YYTEXT_POINTER
 
-/* Define to empty if `const' does not conform to ANSI C. */
+/* Define to empty if 'const' does not conform to ANSI C. */
 #undef const
 
-/* Define to `unsigned int' if <sys/types.h> does not define. */
+/* Define as 'unsigned int' if <stddef.h> doesn't define. */
 #undef size_t
