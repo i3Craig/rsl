@@ -54,6 +54,8 @@
 #include <string.h>
 #include "mcgill.h"
 
+#include "endian.h"
+
 #define TRUE 1
 #define FALSE 0
 #define EMPTY -1.0

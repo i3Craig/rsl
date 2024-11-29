@@ -71,41 +71,8 @@
 #include <bzlib.h>
 
 #include "wsr88d.h"
+#include "endian.h"
 
-static int little_endian(void)
-{
-  union {
-    unsigned char byte[4];
-    int val;
-  } word;
-  word.val = 0;
-  word.byte[3] = 0x1;
-  return word.val != 1;
-}
-
-
-static void swap_4_bytes(void *word)
-{
-  unsigned char *byte;
-  unsigned char temp;
-  byte    = word;
-  temp    = byte[0];
-  byte[0] = byte[3];
-  byte[3] = temp;
-  temp    = byte[1];
-  byte[1] = byte[2];
-  byte[2] = temp;
-}
-
-static void swap_2_bytes(void *word)
-{
-  unsigned char *byte;
-  unsigned char temp;
-  byte    = word;
-  temp    = byte[0];
-  byte[0] = byte[1];
-  byte[1] = temp;
-}
   
 /**********************************************************************/
 /*   D E B U G G I N G     R O U T I N E S    F O L L O W             */

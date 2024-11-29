@@ -30,7 +30,7 @@ Sweep *load_sweep(Sweep *s)
 }
 
 
-main (int argc, char **argv)
+int main (int argc, char **argv)
 {
 
   Radar *new_radar, *tmp_radar, *radar;
@@ -122,7 +122,7 @@ main (int argc, char **argv)
   }
   RSL_free_radar(radar);
   printf("done\n");
-  exit (0);
+  return 0;
 
 }
 

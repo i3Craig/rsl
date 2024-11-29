@@ -1,5 +1,7 @@
 #include "rsl.h"
 
+#include "wsr88d_remove_sails_sweep.h"
+
 void wsr88d_remove_sails_sweep(Radar *radar)
 {
     /* Remove SAILS sweeps.  For VCPs 12 and 212 only. */

@@ -1,5 +1,6 @@
 #include <math.h>
 #include "rsl.h"
+#include <string.h>
 
 static int merge_split_cuts = 1;
 

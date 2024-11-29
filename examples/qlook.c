@@ -47,7 +47,7 @@ void make_pathname(char *filename, char *dir, char *pathname)
 /***********************************************************************/
 /*** DBW ***************************************************************/
 /***********************************************************************/
-main(int argc, char **argv) {
+int main(int argc, char **argv) {
 
     Radar       *radar;
     Volume      *dz_volume, *vr_volume;
@@ -735,7 +735,7 @@ main(int argc, char **argv) {
 
     if(verbose)
         printf("Finished!\n");
-    exit (0);
+    return 0;
 
 } /* End of main */
 

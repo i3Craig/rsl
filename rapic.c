@@ -60,7 +60,6 @@
 
 /* Substitute the variable and function names.  */
 #define yyparse rapicparse
-#define yylex   rapiclex
 #define yyerror rapicerror
 #define yylval  rapiclval
 #define yychar  rapicchar
@@ -196,10 +195,6 @@
 #include <string.h>
 
 int rapicerror(char *s);
-int rapicwrap(char *s);
-int rapicwrap(char *s);
-int yywrap(char *s);
-int rapiclex(void);
 
 int nsweep = 0;
 float angres;
@@ -2197,9 +2192,8 @@ int rapicerror(char *s)
   return 1;
 }
 
-int rapicwrap(char *s)
+int yywrap()
 {
-  yywrap(s);
   return 1;
 }
 

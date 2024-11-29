@@ -28,6 +28,8 @@
 #include "rsl.h"
 #include "wsr88d.h"
 
+#include "wsr88d_remove_sails_sweep.h"
+
 extern int radar_verbose_flag;
 /*
  * These externals can be found in the wsr88d library; secret code.

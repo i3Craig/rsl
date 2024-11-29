@@ -20,10 +20,8 @@
     License along with this library; if not, write to the Free
     Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
-int big_endian(void);
-int little_endian(void);
-void swap_4_bytes(void *word);
-void swap_2_bytes(void *word);
+
+#include "endian.h"
 
 int big_endian(void)
 {

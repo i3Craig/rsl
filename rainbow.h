@@ -1,3 +1,5 @@
+#ifndef INCLUDE_RAINBOW_H
+#define INCLUDE_RAINBOW_H
 /* Control characters used in Rainbow data header */
 
 #define SOH 0x01    /* Start of header: first character in Rainbow file. */
@@ -59,3 +61,7 @@ typedef struct {
 
 Radar *RSL_rainbow_to_radar(char *infile);
 int rainbow_data_to_radar(Radar *radar, Rainbow_hdr rainbow_hdr, FILE *fp);
+
+void read_rainbow_header(Rainbow_hdr *rainbow_header, FILE *fp);
+
+#endif

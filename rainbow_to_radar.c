@@ -26,6 +26,7 @@
 #include <string.h>
 #include "rsl.h"
 #include "rainbow.h"
+#include <unistd.h>
 
 struct dms {
     int deg;

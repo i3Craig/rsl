@@ -56,6 +56,10 @@ void rapic_load_ray_header(Rapic_sweep_header rh, int iray, int isweep, float el
 void rapic_load_ray_data(unsigned char *buf, int bufsize, int ifield, Ray *ray);
 Radar *fill_header(Radar *radar);
 
+/* These functions were moved here otherwise linking to the shared "rsl.so" object would result in missing yylex / yywrap errors */
+int yylex(void);
+int yywrap(void);
+
 /* I want to have the rapic prefix in the yacc parser.
  * This hack is required. 
  * I got this list from automake.html.
@@ -63,7 +67,6 @@ Radar *fill_header(Radar *radar);
 /*
 #define yymaxdepth rapicmaxdepth
 #define yyparse rapicparse
-#define yylex   rapiclex
 #define yyerror rapicerror
 #define yylval  rapiclval
 #define yychar  rapicchar
