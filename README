@@ -1,5 +1,7 @@
 v1.50 (Released March 1, 2017)
 
+Sept 2024 - Fixed issues with building on Arch Linux, merged in fixes for wsr88d from https://github.com/adokter/rsl/
+
 This is the README file for the Radar Software Library (RSL).
 
 The author of RSL is John H. Merritt.
