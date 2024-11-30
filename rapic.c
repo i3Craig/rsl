@@ -66,7 +66,6 @@
 
 /* Substitute the variable and function names.  */
 #define yyparse         rapicparse
-#define yylex           rapiclex
 #define yyerror         rapicerror
 #define yydebug         rapicdebug
 #define yynerrs         rapicnerrs
@@ -87,7 +86,6 @@ int rapicerror(char *s);
 int rapicwrap(char *s);
 int rapicwrap(char *s);
 int yywrap(char *s);
-int rapiclex(void);
 
 int nsweep = 0;
 float angres;

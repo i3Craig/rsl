@@ -321,3 +321,8 @@ Radar *fill_header(Radar *radar)
 
   return radar;
 }
+
+/* Defined so that linking in the RSL library doesn't also require linking in -lvl */
+int yywrap(char* ipcString){
+  return 1;
+}
