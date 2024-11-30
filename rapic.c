@@ -66,6 +66,7 @@
 
 /* Substitute the variable and function names.  */
 #define yyparse         rapicparse
+#define yylex           rapiclex
 #define yyerror         rapicerror
 #define yydebug         rapicdebug
 #define yynerrs         rapicnerrs
@@ -114,7 +115,7 @@ extern int radar_verbose_flag;
 float rapic_nyquist;
   
 
-#line 120 "rapic.c"
+#line 119 "rapic.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -275,11 +276,11 @@ extern int rapicdebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 326 "rapic.y"
+#line 325 "rapic.y"
 
   Charlen token;
 
-#line 285 "rapic.c"
+#line 284 "rapic.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -798,17 +799,17 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,   334,   334,   346,   347,   349,   359,   372,   374,   413,
-     414,   415,   418,   429,   430,   437,   440,   450,   451,   452,
-     455,   507,   508,   509,   515,   516,   517,   518,   519,   520,
-     521,   522,   523,   524,   525,   526,   527,   528,   529,   530,
-     531,   532,   533,   534,   535,   536,   537,   538,   539,   540,
-     545,   546,   547,   550,   551,   553,   555,   556,   557,   558,
-     559,   560,   561,   562,   563,   564,   565,   567,   568,   569,
-     570,   571,   572,   573,   575,   576,   578,   579,   580,   581,
-     582,   583,   584,   585,   586,   587,   588,   589,   591,   592,
-     593,   594,   596,   597,   598,   599,   600,   602,   603,   605,
-     606
+       0,   333,   333,   345,   346,   348,   358,   371,   373,   412,
+     413,   414,   417,   428,   429,   436,   439,   449,   450,   451,
+     454,   506,   507,   508,   514,   515,   516,   517,   518,   519,
+     520,   521,   522,   523,   524,   525,   526,   527,   528,   529,
+     530,   531,   532,   533,   534,   535,   536,   537,   538,   539,
+     544,   545,   546,   549,   550,   552,   554,   555,   556,   557,
+     558,   559,   560,   561,   562,   563,   564,   566,   567,   568,
+     569,   570,   571,   572,   574,   575,   577,   578,   579,   580,
+     581,   582,   583,   584,   585,   586,   587,   588,   590,   591,
+     592,   593,   595,   596,   597,   598,   599,   601,   602,   604,
+     605
 };
 #endif
 
@@ -1493,7 +1494,7 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* rapic_recognized: complete_header sweeps imageend  */
-#line 335 "rapic.y"
+#line 334 "rapic.y"
 {
   if (radar_verbose_flag) fprintf(stderr, "SUCCESSFUL parse\n");
   sprintf(radar->h.name, "%s", rh.namestr);
@@ -1504,11 +1505,11 @@ yyreduce:
   rapic_radar = radar;
   YYACCEPT;
 }
-#line 1510 "rapic.c"
+#line 1509 "rapic.c"
     break;
 
   case 5: /* sweep: sweepheader rays ENDRADARIMAGE  */
-#line 350 "rapic.y"
+#line 349 "rapic.y"
 {
   /* Attach the sweep to the volume. */
   if (radar_verbose_flag) fprintf(stderr, "Attach the sweep %d to the volume %d.\n",
@@ -1517,11 +1518,11 @@ yyreduce:
   radar->v[ivolume]->h.f    = sweep->h.f;
   radar->v[ivolume]->h.invf = sweep->h.invf;
 }
-#line 1523 "rapic.c"
+#line 1522 "rapic.c"
     break;
 
   case 6: /* sweepheader: scanheader  */
-#line 360 "rapic.y"
+#line 359 "rapic.y"
 {
   /*  float c =  RSL_SPEED_OF_LIGHT; */
   if (rh.angle_resolution != 0) 
@@ -1533,11 +1534,11 @@ yyreduce:
   nray = 0;
   /* rapic_nyquist = c*((float)rh.prf/10.)/(4.*(float)rh.freq*100000.0); */
 }
-#line 1539 "rapic.c"
+#line 1538 "rapic.c"
     break;
 
   case 8: /* complete_header: imageheader IMAGEHEADEREND  */
-#line 375 "rapic.y"
+#line 374 "rapic.y"
 {
   if (radar_verbose_flag) fprintf(stderr, "sweepcount[0] = %d\n", sweepcount[0]);
   if (sweepcount[0] > 0) {
@@ -1574,11 +1575,11 @@ yyreduce:
 				*/
   save_elev = 99999;
 }
-#line 1580 "rapic.c"
+#line 1579 "rapic.c"
     break;
 
   case 12: /* imageheader_item: IMAGE seqno imgno  */
-#line 419 "rapic.y"
+#line 418 "rapic.y"
 {
   radar = RSL_new_radar(MAX_RADAR_VOLUMES);
   sweepcount[0] = 0;
@@ -1588,31 +1589,31 @@ yyreduce:
   sweepcount[4] = 0;
   radar->h.number = atoi((yyvsp[-1].token.s));
 }
-#line 1594 "rapic.c"
+#line 1593 "rapic.c"
     break;
 
   case 14: /* imageheader_item: IMAGESIZE number  */
-#line 431 "rapic.y"
+#line 430 "rapic.y"
 {
   if (atoi((yyvsp[0].token.s)) <= 0) {
 	fprintf(stderr, "RAPIC: /IMAGESIZE == %d.  RAPIC ingest returning NULL.\n", atoi((yyvsp[0].token.s)));
 	YYERROR;
   }
 }
-#line 1605 "rapic.c"
+#line 1604 "rapic.c"
     break;
 
   case 16: /* scanlist: SCAN scanno ':' seqno datetime dc elev fieldno dc offset size  */
-#line 441 "rapic.y"
+#line 440 "rapic.y"
 {
   ifield = atoi((yyvsp[-3].token.s));
   sweepcount[ifield]++;
 }
-#line 1614 "rapic.c"
+#line 1613 "rapic.c"
     break;
 
   case 20: /* ray: RAYDATA  */
-#line 456 "rapic.y"
+#line 455 "rapic.y"
  {
 
    /*   fprintf(stderr, "YACC len=%d text=<", yylval.token.len); */
@@ -1663,224 +1664,224 @@ yyreduce:
    nray++;
    /*   } */
 }
-#line 1669 "rapic.c"
+#line 1668 "rapic.c"
     break;
 
   case 24: /* scanheaditem: NAME namestr  */
-#line 515 "rapic.y"
+#line 514 "rapic.y"
                       { memmove(rh.namestr,(yyvsp[0].token.s),(yyvsp[0].token.len)); }
-#line 1675 "rapic.c"
+#line 1674 "rapic.c"
     break;
 
   case 25: /* scanheaditem: COUNTRY code  */
-#line 516 "rapic.y"
+#line 515 "rapic.y"
                       { rh.country       = atoi((yyvsp[0].token.s)); }
-#line 1681 "rapic.c"
+#line 1680 "rapic.c"
     break;
 
   case 26: /* scanheaditem: STNID idno  */
-#line 517 "rapic.y"
+#line 516 "rapic.y"
                           { rh.station_id_no = atoi((yyvsp[0].token.s)); }
-#line 1687 "rapic.c"
+#line 1686 "rapic.c"
     break;
 
   case 27: /* scanheaditem: LATITUDE lat  */
-#line 518 "rapic.y"
+#line 517 "rapic.y"
                           { rh.lat           = atof((yyvsp[0].token.s)); }
-#line 1693 "rapic.c"
+#line 1692 "rapic.c"
     break;
 
   case 28: /* scanheaditem: LONGITUDE lon  */
-#line 519 "rapic.y"
+#line 518 "rapic.y"
                           { rh.lon           = atof((yyvsp[0].token.s)); }
-#line 1699 "rapic.c"
+#line 1698 "rapic.c"
     break;
 
   case 29: /* scanheaditem: HEIGHT alt  */
-#line 520 "rapic.y"
+#line 519 "rapic.y"
                           { rh.height        = atof((yyvsp[0].token.s)); }
-#line 1705 "rapic.c"
+#line 1704 "rapic.c"
     break;
 
   case 30: /* scanheaditem: DATE datno  */
-#line 521 "rapic.y"
+#line 520 "rapic.y"
                           { rh.datno         = atoi((yyvsp[0].token.s)); }
-#line 1711 "rapic.c"
+#line 1710 "rapic.c"
     break;
 
   case 31: /* scanheaditem: TIME hhmm  */
-#line 522 "rapic.y"
+#line 521 "rapic.y"
                           { rh.hhmm          = atof((yyvsp[0].token.s)); }
-#line 1717 "rapic.c"
+#line 1716 "rapic.c"
     break;
 
   case 32: /* scanheaditem: TIMESTAMP yyyymoddhhmmss  */
-#line 523 "rapic.y"
+#line 522 "rapic.y"
                                  { memmove(rh.yyyymoddhhmmss,(yyvsp[0].token.s),(yyvsp[0].token.len)); }
-#line 1723 "rapic.c"
+#line 1722 "rapic.c"
     break;
 
   case 33: /* scanheaditem: VERS versionNumber  */
-#line 524 "rapic.y"
+#line 523 "rapic.y"
                                  { rh.versionNumber    = atof((yyvsp[0].token.s)); }
-#line 1729 "rapic.c"
+#line 1728 "rapic.c"
     break;
 
   case 34: /* scanheaditem: FREQUENCY freq  */
-#line 525 "rapic.y"
+#line 524 "rapic.y"
                              { rh.freq             = atoi((yyvsp[0].token.s)); }
-#line 1735 "rapic.c"
+#line 1734 "rapic.c"
     break;
 
   case 35: /* scanheaditem: PRF prf  */
-#line 526 "rapic.y"
+#line 525 "rapic.y"
                              { rh.prf              = atoi((yyvsp[0].token.s)); }
-#line 1741 "rapic.c"
+#line 1740 "rapic.c"
     break;
 
   case 36: /* scanheaditem: PULSELENGTH len  */
-#line 527 "rapic.y"
+#line 526 "rapic.y"
                              { rh.pulselen         = atof((yyvsp[0].token.s)); }
-#line 1747 "rapic.c"
+#line 1746 "rapic.c"
     break;
 
   case 37: /* scanheaditem: RNGRES gatewidth  */
-#line 528 "rapic.y"
+#line 527 "rapic.y"
                                  { rh.range_resolution = atoi((yyvsp[0].token.s)); }
-#line 1753 "rapic.c"
+#line 1752 "rapic.c"
     break;
 
   case 38: /* scanheaditem: ANGLERATE anglerate  */
-#line 529 "rapic.y"
+#line 528 "rapic.y"
                                  { rh.anglerate        = atof((yyvsp[0].token.s)); }
-#line 1759 "rapic.c"
+#line 1758 "rapic.c"
     break;
 
   case 39: /* scanheaditem: CLEARAIR clearair  */
-#line 530 "rapic.y"
+#line 529 "rapic.y"
                                  { memmove(rh.clearair,(yyvsp[0].token.s),(yyvsp[0].token.len));}
-#line 1765 "rapic.c"
+#line 1764 "rapic.c"
     break;
 
   case 40: /* scanheaditem: ANGRES angle  */
-#line 531 "rapic.y"
+#line 530 "rapic.y"
                                  { rh.angle_resolution = atof((yyvsp[0].token.s)); }
-#line 1771 "rapic.c"
+#line 1770 "rapic.c"
     break;
 
   case 41: /* scanheaditem: VIDRES res  */
-#line 532 "rapic.y"
+#line 531 "rapic.y"
                                  { rh.video_resolution = atoi((yyvsp[0].token.s)); }
-#line 1777 "rapic.c"
+#line 1776 "rapic.c"
     break;
 
   case 42: /* scanheaditem: STARTRNG rng  */
-#line 533 "rapic.y"
+#line 532 "rapic.y"
                                  { rh.start_range      = atoi((yyvsp[0].token.s)); }
-#line 1783 "rapic.c"
+#line 1782 "rapic.c"
     break;
 
   case 43: /* scanheaditem: ENDRNG rng  */
-#line 534 "rapic.y"
+#line 533 "rapic.y"
                                  { rh.end_range        = atoi((yyvsp[0].token.s)); }
-#line 1789 "rapic.c"
+#line 1788 "rapic.c"
     break;
 
   case 44: /* scanheaditem: PRODUCT typeid BRACKETNUM  */
-#line 535 "rapic.y"
+#line 534 "rapic.y"
                                     { memmove(rh.product_type,(yyvsp[-1].token.s),(yyvsp[-1].token.len)); }
-#line 1795 "rapic.c"
+#line 1794 "rapic.c"
     break;
 
   case 47: /* scanheaditem: ELEV elev  */
-#line 538 "rapic.y"
+#line 537 "rapic.y"
                         { rh.elev    = atof((yyvsp[0].token.s)); }
-#line 1801 "rapic.c"
+#line 1800 "rapic.c"
     break;
 
   case 48: /* scanheaditem: VELLVL level  */
-#line 539 "rapic.y"
+#line 538 "rapic.y"
                         { rh.vellvl  = atof((yyvsp[0].token.s)); }
-#line 1807 "rapic.c"
+#line 1806 "rapic.c"
     break;
 
   case 49: /* scanheaditem: NYQUIST nyq  */
-#line 541 "rapic.y"
+#line 540 "rapic.y"
 {
   rh.nyquist = atof((yyvsp[0].token.s));
   rapic_nyquist = rh.nyquist;
 }
-#line 1816 "rapic.c"
+#line 1815 "rapic.c"
     break;
 
   case 50: /* scanheaditem: VIDEO field  */
-#line 545 "rapic.y"
+#line 544 "rapic.y"
                         { memmove(rh.video,(yyvsp[0].token.s),(yyvsp[0].token.len)); }
-#line 1822 "rapic.c"
+#line 1821 "rapic.c"
     break;
 
   case 51: /* scanheaditem: IMGFMT type  */
-#line 546 "rapic.y"
+#line 545 "rapic.y"
                         { memmove(rh.imgfmt,(yyvsp[0].token.s),(yyvsp[0].token.len)); }
-#line 1828 "rapic.c"
+#line 1827 "rapic.c"
     break;
 
   case 89: /* no: number  */
-#line 592 "rapic.y"
+#line 591 "rapic.y"
                     {rh.scannum = atoi((yyvsp[0].token.s));}
-#line 1834 "rapic.c"
+#line 1833 "rapic.c"
     break;
 
   case 90: /* nscans: number  */
-#line 593 "rapic.y"
+#line 592 "rapic.y"
                     {rh.ofscans = atoi((yyvsp[0].token.s));}
-#line 1840 "rapic.c"
+#line 1839 "rapic.c"
     break;
 
   case 92: /* field: REFL  */
-#line 596 "rapic.y"
+#line 595 "rapic.y"
                   {ivolume = DZ_INDEX; volume = radar->v[ivolume];}
-#line 1846 "rapic.c"
+#line 1845 "rapic.c"
     break;
 
   case 93: /* field: VEL  */
-#line 597 "rapic.y"
+#line 596 "rapic.y"
                   {ivolume = VR_INDEX; volume = radar->v[ivolume];}
-#line 1852 "rapic.c"
+#line 1851 "rapic.c"
     break;
 
   case 94: /* field: UNCORREFL  */
-#line 598 "rapic.y"
+#line 597 "rapic.y"
                   {ivolume = ZT_INDEX; volume = radar->v[ivolume];}
-#line 1858 "rapic.c"
+#line 1857 "rapic.c"
     break;
 
   case 95: /* field: ZDR  */
-#line 599 "rapic.y"
+#line 598 "rapic.y"
                   {ivolume = ZD_INDEX; volume = radar->v[ivolume];}
-#line 1864 "rapic.c"
+#line 1863 "rapic.c"
     break;
 
   case 96: /* field: WID  */
-#line 600 "rapic.y"
+#line 599 "rapic.y"
                   {ivolume = SW_INDEX; volume = radar->v[ivolume];}
-#line 1870 "rapic.c"
+#line 1869 "rapic.c"
     break;
 
   case 99: /* ratio: NONE  */
-#line 605 "rapic.y"
+#line 604 "rapic.y"
                     {rh.ratio1 = 0; rh.ratio2 = 0;}
-#line 1876 "rapic.c"
+#line 1875 "rapic.c"
     break;
 
   case 100: /* ratio: number ':' number  */
-#line 606 "rapic.y"
+#line 605 "rapic.y"
                     {rh.ratio1 = atoi((yyvsp[-2].token.s)); rh.ratio2 = atoi((yyvsp[0].token.s));}
-#line 1882 "rapic.c"
+#line 1881 "rapic.c"
     break;
 
 
-#line 1886 "rapic.c"
+#line 1885 "rapic.c"
 
       default: break;
     }
@@ -2073,7 +2074,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 610 "rapic.y"
+#line 609 "rapic.y"
 
 
 int rapicerror(char *s)
