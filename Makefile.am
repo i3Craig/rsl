@@ -39,9 +39,16 @@ headers = africa.h dorade.h lassen.h \
 rapic_c =  rapic_to_radar.c rapic.y rapic-lex.l rapic_routines.c
 radtec_c = radtec_to_radar.c radtec.c
 
-
+# The replace logic below was running during the make and make install phases of building this program.
+# This is because prefix needs to be adjusted in the make install phase when installing to a temp packaging directory.
+# That change triggered this logic to rerun. We don't want to modify headers during make install as that triggers
+# a rebuild of the entore library with the new prefix hard-coded in the header files.
+# If add_paths_to_hardcoded_files_in_headers is blank or 'true', then the replace logic is run.
+# But, if add_paths_to_hardcoded_files_in_headers is set to false, then this logic is explicitly disabled.
 rsl.h: Makefile
-	@for h in $(build_headers); do \
+	@lRunThisLogic=$(add_paths_to_hardcoded_files_in_headers); \
+	if $$add_paths_to_hardcoded_files_in_headers ; then \
+	for h in $(build_headers); do \
 	echo -n "Checking substitutions in header file $$h ... "; \
 	cp $$h $$h.in; \
 	sed -e 's/RSL_VERSION_STR.*/RSL_VERSION_STR \"$(VERSION)\"/' \
@@ -56,7 +63,8 @@ rsl.h: Makefile
        echo "substitutions made in $$h."; \
     fi; \
 	rm -f $$h.in; \
-    done
+    done \
+    fi
 
 PREFIX = rapic
 LFLAGS = -P$(PREFIX)
