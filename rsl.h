@@ -776,6 +776,7 @@ void RSL_carpi_to_pgm(Carpi *carpi, char *outfile, int xdim, int ydim,
 /* Internal storage conversion functions. These may be any conversion and
  * may be dynamically defined; based on the input data conversion.
  */
+float DC_F(Range x);
 float DZ_F(Range x);
 float VR_F(Range x);
 float SW_F(Range x);
@@ -811,6 +812,7 @@ float VC_F(Range x);
 float SD_F(Range x);
 float SN_F(Range x);
 
+Range DC_INVF(float x);
 Range DZ_INVF(float x);
 Range VR_INVF(float x);
 Range SW_INVF(float x);
@@ -867,7 +869,7 @@ static  float (*RSL_f_list[])(Range x) = {DZ_F, VR_F, SW_F, CZ_F, ZT_F, DR_F,
                                           SQ_F, VS_F, VL_F, VG_F, VT_F, NP_F,
                                           HC_F, VC_F, VR_F, SW_F, VR_F, SW_F,
                                           DZ_F, CZ_F, PH_F, SD_F, DZ_F, DZ_F,
-                                          ZT_F, DZ_F, ZT_F, DZ_F, SN_F, DZ_F};
+                                          ZT_F, DZ_F, ZT_F, DZ_F, SN_F, DC_F};
 
 static  Range (*RSL_invf_list[])(float x)
          = {DZ_INVF, VR_INVF, SW_INVF, CZ_INVF, ZT_INVF, DR_INVF, 
@@ -877,7 +879,7 @@ static  Range (*RSL_invf_list[])(float x)
             SQ_INVF, VS_INVF, VL_INVF, VG_INVF, VT_INVF, NP_INVF,
             HC_INVF, VC_INVF, VR_INVF, SW_INVF, VR_INVF, SW_INVF,
             DZ_INVF, CZ_INVF, PH_INVF, SD_INVF, DZ_INVF, DZ_INVF,
-            ZT_INVF, DZ_INVF, ZT_INVF, DZ_INVF, SN_INVF, DZ_INVF};
+            ZT_INVF, DZ_INVF, ZT_INVF, DZ_INVF, SN_INVF, DC_INVF};
 #endif
 /* Secret routines that are quite useful and useful to developers. */
 void radar_load_date_time(Radar *radar);

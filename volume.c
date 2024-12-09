@@ -115,6 +115,16 @@ extern int radar_verbose_flag;
 #define F_OFFSET 4
 
 
+float DC_F(Range x) { /*  Clutter Filter Power removed (CFP)  */
+  if (x >= F_OFFSET) /* Check if the value is valid radar data. */
+    return (((float)x - F_OFFSET) / F_FACTOR); /* Scale and convert to physical units. */
+  if (x == 0) return BADVAL; /* Below threshold. */
+  if (x == 1) return RFVAL;  /* Range folded. */
+  if (x == 2) return APFLAG; /* Associated phenomena flag. */
+  if (x == 3) return NOECHO; /* No echo detected. */
+  return BADVAL; /* Fallback for invalid values. */
+}
+
 float DZ_F(Range x) {
   if (x >= F_OFFSET) /* This test works when Range is unsigned. */
     return (((float)x-F_OFFSET)/F_FACTOR - F_DZ_RANGE_OFFSET);  /* Default wsr88d. */
@@ -289,6 +299,15 @@ float VC_F(Range x) {  return VR_F(x); }
  * we cannot simply set up a switch statement and we must test for
  * all the special cases first.  We must test for exactness.
  */
+
+Range DC_INVF(float value) { /*  Clutter Filter Power removed (CFP)  */
+  if (value == BADVAL) return 0;  /* Below threshold. */
+  if (value == RFVAL) return 1;   /* Range folded. */
+  if (value == APFLAG) return 2;  /* Associated phenomena flag. */
+  if (value == NOECHO) return 3;  /* No echo detected. */
+  return (Range)((value * F_FACTOR) + F_OFFSET); /* Convert back to raw format. */
+}
+
 Range DZ_INVF(float x)
 {
   if (x == BADVAL) return (Range)0;
@@ -1402,7 +1421,7 @@ int rsl_qfield[MAX_RADAR_VOLUMES] = {
   1, 1, 1, 1, 1,
   1, 1, 1, 1, 1,
   1, 1, 1, 1, 1,
-  1, 1
+  1, 1, 1
  };
 
 

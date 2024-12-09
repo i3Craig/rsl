@@ -78,7 +78,7 @@ typedef struct {
     unsigned int field4;
     unsigned int field5;
     unsigned int field6;
-    /* unsigned int cfp_const; to be added for CFP data in build 19.0 FIXME */
+    unsigned int field7; /* Added for CFP data in build 19.0 */
 } Ray_header_m31;  /* Called Data Header Block in RDA/RPG document. */
 
 typedef struct {
@@ -129,7 +129,7 @@ void wsr88d_swap_m31_ray_hdr(Ray_header_m31 *ray_hdr)
     swap_4_bytes(&ray_hdr->elev);
     swap_2_bytes(&ray_hdr->data_block_count);
     data_ptr = (int *) &ray_hdr->vol_const;
-    for (; data_ptr <= (int *) &ray_hdr->field6; data_ptr++)
+    for (; data_ptr <= (int *) &ray_hdr->field7; data_ptr++)
 	swap_4_bytes(data_ptr);
 }
 
@@ -402,15 +402,21 @@ void wsr88d_load_ray_into_radar(Wsr88d_ray_m31 *wsr88d_ray, int isweep,
     int merging_split_cuts;
 
     merging_split_cuts =  wsr88d_merge_split_cuts_is_set();
-    // FIXME: on newer radar data nfields is too large, causing for loop below to access unallocated memory
     nfields = wsr88d_ray->ray_hdr.data_block_count - nconstblocks;
-    if(nfields > 6) nfields=6; /* this effectively skips reading of CFP data FIXME */
     field_offset = (int *) &wsr88d_ray->ray_hdr.radial_const;
     do_swap = little_endian();
     iray = wsr88d_ray->ray_hdr.azm_num - 1;
 
+    /* Iterate through all fields on the ray header struct - field 1 through 7 (unless data_block_count tells to stop sooner. */
     for (ifield=0; ifield < nfields; ifield++) {
 	field_offset++;
+
+	/* If we try to go off of the end of the stuct, then print an error and leave */
+	if(field_offset > (int*) &(wsr88d_ray->ray_hdr.field7)){
+		printf("Error - wsr88d_m31.c: wsr88d_load_ray_into_radar failed. We are attempting to run off the end of the ray header structor. ifield: %i, nfields: %i\n", ifield, nfields);
+		return;
+	}
+
 	data_index = *field_offset;
 	/* Get data moment header. */
 	hdr_size = sizeof(data_hdr);
@@ -436,6 +442,7 @@ void wsr88d_load_ray_into_radar(Wsr88d_ray_m31 *wsr88d_ray, int isweep,
 	    case DR_INDEX: f = DR_F; invf = DR_INVF; break;
 	    case PH_INDEX: f = PH_F; invf = PH_INVF; break;
 	    case RH_INDEX: f = RH_F; invf = RH_INVF; break;
+	    case DC_INDEX: f = DC_F; invf = DC_INVF; break;
 	}
 
 	waveform = vcp_data.waveform[isweep];
@@ -469,20 +476,16 @@ void wsr88d_load_ray_into_radar(Wsr88d_ray_m31 *wsr88d_ray, int isweep,
                     radar->v[vol_index]->h.type_str = strdup("Spectrum width");
                     break;
                 case DR_INDEX:
-                    radar->v[vol_index]->h.type_str = strdup("Differential "
-                        "Reflectivity");
+                    radar->v[vol_index]->h.type_str = strdup("Differential Reflectivity");
                     break;
                 case PH_INDEX:
-                    radar->v[vol_index]->h.type_str = strdup("Differential "
-                        "Phase (PhiDP)");
+                    radar->v[vol_index]->h.type_str = strdup("Differential Phase (PhiDP)");
                     break;
                 case RH_INDEX:
-                    radar->v[vol_index]->h.type_str = strdup("Correlation "
-                        "Coefficient (RhoHV)");
+                    radar->v[vol_index]->h.type_str = strdup("Correlation Coefficient (RhoHV)");
                     break;
                 case DC_INDEX:
-                    radar->v[vol_index]->h.type_str = strdup("Clutter "
-                        "Filter Power removed (CFP)");
+                    radar->v[vol_index]->h.type_str = strdup("Clutter Filter Power removed (CFP)");
                     break;
             }
 	   
