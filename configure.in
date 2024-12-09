@@ -48,7 +48,7 @@ if test $prefix = NONE; then
   prefix=$ac_default_prefix
 fi
 LIBDIR="-L$prefix/lib"
-LIBS="-lz -lm -lbz2"
+LIBS="-lz -lm -lbz2 -ltirpc"
 
 # The order of the libraries is important.
 # This works:
