@@ -171,7 +171,7 @@ extern int rapicdebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 325 "rapic.y"
+#line 324 "rapic.y"
 
   Charlen token;
 

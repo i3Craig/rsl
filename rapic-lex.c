@@ -25,6 +25,7 @@
 #define yyout rapicout
 #define yyrestart rapicrestart
 #define yytext rapictext
+#define yywrap rapicwrap
 #define yyalloc rapicalloc
 #define yyrealloc rapicrealloc
 #define yyfree rapicfree
@@ -209,6 +210,12 @@
 #define rapicset_lineno_ALREADY_DEFINED
 #else
 #define yyset_lineno rapicset_lineno
+#endif
+
+#ifdef yywrap
+#define rapicwrap_ALREADY_DEFINED
+#else
+#define yywrap rapicwrap
 #endif
 
 #ifdef yyalloc
@@ -981,6 +988,13 @@ void yyset_lineno ( int _line_number  );
  * section 1.
  */
 
+#ifndef YY_SKIP_YYWRAP
+#ifdef __cplusplus
+extern "C" int yywrap ( void );
+#else
+extern int yywrap ( void );
+#endif
+#endif
 
 #ifndef YY_NO_UNPUT
     
@@ -1580,7 +1594,7 @@ case YY_STATE_EOF(ATMODE):
 				{
 				(yy_did_buffer_switch_on_eof) = 0;
 
-				if ( yywrap( NULL ) )
+				if ( yywrap(  ) )
 					{
 					/* Note: because we've taken care in
 					 * yy_get_next_buffer() to have set up
@@ -1924,7 +1938,7 @@ static int yy_get_next_buffer (void)
 
 				case EOB_ACT_END_OF_FILE:
 					{
-					if ( yywrap( NULL ) )
+					if ( yywrap(  ) )
 						return 0;
 
 					if ( ! (yy_did_buffer_switch_on_eof) )

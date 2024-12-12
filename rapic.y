@@ -29,9 +29,8 @@
 #include <string.h>
 
 int rapicerror(char *s);
-int rapicwrap(char *s);
-int rapicwrap(char *s);
-int yywrap(char *s);
+int rapicwrap(void);
+int yywrap(void);
 
 int nsweep = 0;
 float angres;
@@ -616,8 +615,8 @@ int rapicerror(char *s)
   return 1;
 }
 
-int rapicwrap(char *s)
+int rapicwrap(void)
 {
-  yywrap(s);
+  yywrap();
   return 1;
 }
