@@ -1,10 +1,13 @@
-v1.50 (Released March 1, 2017)
+### RSL v1.50- with additional fixes
 Cloned from: http://pileus.org/aweather/files/rsl-v1.50.tar.gz and modified to build on a modern Linux distro.
 
 Noteworthy changes in this fork:
-Sept 2024 - Fixed issues with building on Arch Linux, merged in fixes for wsr88d from https://github.com/adokter/rsl/
-Dec 2024 - Added support for 'clutter filter power removed' NEXRAD volume, updated wsr88d_locations.dat to be in sync with live sites.
+-------------------------------
+ - Sept 2024 - Fixed issues with building on Arch Linux, merged in fixes for wsr88d from https://github.com/adokter/rsl/
+ - Dec 2024 - Added support for 'clutter filter power removed' NEXRAD volume, updated wsr88d_locations.dat to be in sync with live sites.
 
+OVERVIEW
+--------
 This is the README file for the Radar Software Library (RSL).
 
 The author of RSL is John H. Merritt.
@@ -102,19 +105,17 @@ Arch Linux: Install from the AUR - https://aur.archlinux.org/packages/rsl-git
 
 1.  Unpack the GNU compressed tar archive, example:
 
-     tar -xzf rsl-v1.43.tgz
-
-         -or-
-
-     zcat rsl-v1.43.tgz | tar xf -
+     `tar -xzf rsl-v1.43.tgz`
+       or
+     `zcat rsl-v1.43.tgz | tar xf -`
 
 2. If you DON'T want LASSEN capability or you find that your system
    can not compile the lassen routines, you must edit acconfig.h and
    change '#define HAVE_LASSEN 1' to '#undef HAVE_LASSEN'.
 
 3. configure
-   make install    -- Installs the RSL library, and then installs
-                      any_to_gif and any_to_uf.
+   `make install`    -- Installs the RSL library, and then installs
+                      `any_to_gif` and `any_to_uf`.
 
 NOTE: You can specify the --prefix=/some/other/dir as an option to
       the configure command.  This will install the librsl.so there
