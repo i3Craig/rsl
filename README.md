@@ -1,7 +1,9 @@
 v1.50 (Released March 1, 2017)
 Cloned from: http://pileus.org/aweather/files/rsl-v1.50.tar.gz and modified to build on a modern Linux distro.
 
+Noteworthy changes in this fork:
 Sept 2024 - Fixed issues with building on Arch Linux, merged in fixes for wsr88d from https://github.com/adokter/rsl/
+Dec 2024 - Added support for 'clutter filter power removed' NEXRAD volume, updated wsr88d_locations.dat to be in sync with live sites.
 
 This is the README file for the Radar Software Library (RSL).
 
@@ -85,7 +87,6 @@ without PKWARE support.
                           your RSL application, if you plan to output images.
                           This is not required when 
                           linking your application with the RSL.
-
                           You only need ppmtogif and ppmtopict.
 
   PKWARE Data             Version 1.11.  Needed for the RAPIC ingest.
