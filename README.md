@@ -97,6 +97,8 @@ Example mainlines are provided in the directory examples.
 INSTALLATION INSTRUCTIONS
 --------------------------
 
+Arch Linux: Install from the AUR - https://aur.archlinux.org/packages/rsl-git
+
 1.  Unpack the GNU compressed tar archive, example:
 
      tar -xzf rsl-v1.43.tgz
@@ -151,10 +153,10 @@ PROBLEMS
 1. If you don't have ppmtogif nor ppmtopict, you can still make images.  The
    images will be PPM files.  Create two commands called 'ppmtogif' and
    'ppmtopict' that consists of the following two lines:
----- cut ----
+```bash
 #!/bin/csh -f
 cat
----- cut ----
+```
    Make these new commands executable and
    place them in a directory that is in your $PATH.  No translation
    of PPM will happen and you can use 'xv', for instance, to view
@@ -169,7 +171,7 @@ cat
    in the following 'make' excerpt.
 
 
------ cut -----
+```bash
 gcc -v -shared -W1,-soname,librsl.so.1 -o librsl.so.1.17 rapic_to_radar.o rapic.tab.o lex.rapic.o rapic_routines.o radar.o volume.o image_gen.o cappi.o fraction.o read_write.o farea.o range.o radar_to_uf.o uf_to_radar.o lassen_to_radar.o wsr88d_to_radar.o carpi.o cube.o sort_rays.o toga_to_radar.o gts.o histogram.o ray_indexes.o anyformat_to_radar.o get_win.o endian.o mcgill_to_radar.o mcgill.o interp.o toga.o lassen.o  wsr88d.o wsr88d_get_site.o gzip.o prune.o reverse.o fix_headers.o radar_to_hdf_1.o radar_to_hdf_2.o nsig_to_radar.o nsig.o nsig2_to_radar.o hdf_to_radar.o toolkit_memory_mgt.o africa_to_radar.o africa.o
 Reading specs from /opt/hppd/lib/gcc/gcc-lib/hppa1.1-hp-hpux9.05/2.7.2.1/specs
 gcc version 2.7.2.1
@@ -177,7 +179,7 @@ gcc version 2.7.2.1
 /bin/ld: DP-Relative Code in file /usr/tmp/cca11778.o - Shared Library must be Position-Independent 
 collect2: ld returned 1 exit status
 make: *** [librsl.so.1.17] Error 1
------ cut -----
+```
 
    Take the 'ld' command that is shown, the second of the two commands,
    and execute it directly at the Unix prompt.  It will create the
@@ -204,6 +206,11 @@ QUESTIONS
 
 Contact the TRMM Office help at gsfc-rsl-help@lists.nasa.gov
 
+UPDATING
+--------
+Some files in this repo need to be synced from internet sources.
+- `wsr88d_locations.dat`: This file contains a list of NEXRAD radar sites.
+   Run `helpers/regenerate-wsr88d_locations-file-from-web-source.py` to regenerat this file with data from https://www.ncei.noaa.gov/access/homr/.
 
 RELATED PROJECTS
 ----------------
