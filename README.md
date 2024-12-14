@@ -217,5 +217,5 @@ Some files in this repo need to be synced from internet sources.
 RELATED PROJECTS
 ----------------
 Note - This is not an endorsement of the projects or the programs listed below, but a list of related projects that can be used as a known-working NEXRAD Level 2 decoder.
-Online NEXRAD Level 2 viewer: https://radar.quadweather.com/
-Python NEXRAD Level 2 decoding library: https://github.com/ARM-DOE/pyart/blob/main/pyart/io/nexrad_level2.py#L66
+- Online NEXRAD Level 2 viewer: https://radar.quadweather.com/
+- Python NEXRAD Level 2 decoding library: https://github.com/ARM-DOE/pyart/blob/main/pyart/io/nexrad_level2.py#L66
