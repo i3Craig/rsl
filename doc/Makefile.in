@@ -502,7 +502,7 @@ uninstall-am: uninstall-docDATA
 install-exec-hook:
 	-mkdir $(prefix)/doc
 	-mkdir $(docdir)
-	$(INSTALL) -m 444 ../README $(docdir)
+	$(INSTALL) -m 444 ../README.md $(docdir)
 	$(INSTALL) -m 444 ../CHANGES $(docdir)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
