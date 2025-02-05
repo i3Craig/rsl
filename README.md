@@ -5,6 +5,7 @@ Noteworthy changes in this fork:
 -------------------------------
  - Sept 2024 - Fixed issues with building on Arch Linux, merged in fixes for wsr88d from https://github.com/adokter/rsl/
  - Dec 2024 - Added support for 'clutter filter power removed' NEXRAD volume, updated wsr88d_locations.dat to be in sync with live sites.
+ - Feb 2025 - Fixed multi-threading race conditions in wsr88d decoding, updated to ensure all radar sites have a state code in the `wsr88d_locations.dat` file.
 
 OVERVIEW
 --------

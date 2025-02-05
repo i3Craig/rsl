@@ -53,7 +53,7 @@ Wsr88d_site_info *wsr88d_get_site(char *in_sitenm)
 		{
  			scan_count=sscanf(line,"%d %s %s %s %d %d %d %d %d %d %d",&in_number,in_site,in_city,in_state,&in_latd,&in_latm,&in_lats,&in_lond,&in_lonm,&in_lons,&in_height);
 			if(scan_count != 11 && scan_count != 0)
-				fprintf(stderr,"get_site: sitedb read");
+				fprintf(stderr,"get_site: sitedb read failed for line: '%s'\n", line);
 			else
 			{
 		    	/* get the radar site info */

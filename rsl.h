@@ -903,6 +903,7 @@ int wsr88d_merge_split_cuts_is_set();
 Radar *wsr88d_merge_split_cuts(Radar *radar);
 void RSL_wsr88d_asis();
 void RSL_wsr88d_keep_sails();
+void RSL_wsr88d_do_not_keep_sails();
 
 /* Debugging prototypes. */
 void poke_around_volume(Volume *v);

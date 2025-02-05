@@ -54,6 +54,11 @@ void RSL_wsr88d_keep_sails()
     keep_sails = 1;
 }
 
+/* Call to return the keep_sails functionality back to its default (do not keep SAILS sweeps). */
+void RSL_wsr88d_do_not_keep_sails(){
+    keep_sails = 0;
+}
+
 /* Function to specify that all sweeps are to be stored as read.  Don't combine
  * split-cuts by elevation or remove short-range reflectivity in Doppler cuts.
  */

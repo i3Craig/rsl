@@ -65,6 +65,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #include <fcntl.h>
 #include <sys/types.h>
@@ -243,9 +244,10 @@ Wsr88d_file *wsr88d_open(char *filename)
   if (wf->fptr == NULL) return NULL;
 
   // first check how the data are compressed by reading first few of magic bytes
-  char hdrplus4[28];
+  unsigned char hdrplus4[28];
   char bzmagic[4];
   int ar2v6bzip = 0;
+  bool lIsGzipped = false; /* Stores true if the input file is gzipped and needs to be decompressed */
   fpos_t pos;
   fgetpos(wf->fptr, &pos);
   if (fread(hdrplus4, sizeof(hdrplus4), 1, wf->fptr) != 1) {
@@ -258,6 +260,9 @@ Wsr88d_file *wsr88d_open(char *filename)
   }
   // test for bzip2 magic.
   if (strncmp("BZ",bzmagic,2) == 0) ar2v6bzip = 1;
+
+  /* Check to see if this is a gzip-compressed file. If it is, the first two bytes should be 0x1F and 0x8B */
+  lIsGzipped = (hdrplus4[0] == 0x1F && hdrplus4[1] == 0x8B);
 
   fclose(wf->fptr);
 
@@ -273,7 +278,12 @@ Wsr88d_file *wsr88d_open(char *filename)
   if(ar2v6bzip){
      wf->fptr = uncompress_pipe_ar2v(wf->fptr);
   }
-  else{
+  else if(lIsGzipped){
+    /* Files are typically not gzipped, but instead are bzipped. Hence, there should be no need to g-unzip them.
+     * Also, the uncompress_pipe call is not thread safe. Thus, to make this library more thread-save, we first check if the file is gzipped.
+     * If it is, then we try to decompress it with gzip. Otherwise, we leave the file as it currently is. This should also help improve
+     * read performance a bit, as we don't have to pipe the entire file through gzip each time we read it.
+     */
      wf->fptr = uncompress_pipe(wf->fptr);
   }
 
