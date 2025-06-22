@@ -58,7 +58,7 @@ Radar *fill_header(Radar *radar);
 
 /* These functions were moved here otherwise linking to the shared "rsl.so" object would result in missing yylex / yywrap errors */
 int yylex(void);
-int yywrap();
+int yywrap(char* ipcString);
 
 /* I want to have the rapic prefix in the yacc parser.
  * This hack is required. 

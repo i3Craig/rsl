@@ -38,7 +38,7 @@ void process_args(int argc, char **argv, char **in_file, char **site)
   while ((c = getopt(argc, argv, "s:")) != -1)
 	switch (c) {
 	case 's': *site = strdup(optarg); break;
-	case '?': usage(argv); break;
+	case '?': usage(); break;
 	default:  break;
 	}
   if (argc - optind == 1) *in_file = strdup(argv[optind]);
