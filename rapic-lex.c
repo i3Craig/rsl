@@ -990,9 +990,9 @@ void yyset_lineno ( int _line_number  );
 
 #ifndef YY_SKIP_YYWRAP
 #ifdef __cplusplus
-extern "C" int yywrap (char* ipcString);
+extern "C" int yywrap ();
 #else
-extern int yywrap (char* ipcString);
+extern int yywrap ();
 #endif
 #endif
 
@@ -1594,7 +1594,7 @@ case YY_STATE_EOF(ATMODE):
 				{
 				(yy_did_buffer_switch_on_eof) = 0;
 
-				if ( yywrap( NULL ) )
+				if ( yywrap() )
 					{
 					/* Note: because we've taken care in
 					 * yy_get_next_buffer() to have set up
@@ -1938,7 +1938,7 @@ static int yy_get_next_buffer (void)
 
 				case EOB_ACT_END_OF_FILE:
 					{
-					if ( yywrap( NULL ) )
+					if ( yywrap() )
 						return 0;
 
 					if ( ! (yy_did_buffer_switch_on_eof) )

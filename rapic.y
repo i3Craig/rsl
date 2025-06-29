@@ -29,8 +29,8 @@
 #include <string.h>
 
 int rapicerror(char *s);
-int rapicwrap(char *s);
-int yywrap(char* ipcString);
+int rapicwrap();
+int yywrap();
 
 int nsweep = 0;
 float angres;
@@ -615,8 +615,8 @@ int rapicerror(char *s)
   return 1;
 }
 
-int rapicwrap(char* ipcString)
+int rapicwrap()
 {
-  yywrap(ipcString);
+  yywrap();
   return 1;
 }
